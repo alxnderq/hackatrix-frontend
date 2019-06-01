@@ -454,6 +454,7 @@
 			}
 			//send
 			var answers=[];
+			let my_id = '0';
 			$('.send_btn').on('click',function(){
 				let $answrs = $('.data_answers');
 				for (let c=0;c<$answrs.length;c++){
@@ -466,8 +467,9 @@
 							answers.push(answer_single);
 						}
 					}
-				}
-				console.log(answers);
+				}				
+				let answer_single = {idStudent: my_id, requestStudentList: answers};
+				console.log(answer_single);
 			});
 			$('.next-btn').on('click',function(){
 				let $this = $(this);
