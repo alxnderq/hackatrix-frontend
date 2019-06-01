@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="vendor/chartjs/Chart.min.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <title>Thot</title>
+</head>
+
+<body>
+    <header class="header-profile">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-profile-back">
+                    <span>Back</span>
+                </div>
+                <div class="header-profile-logo">
+                    <img src="assets/images/logo.png" alt="Logo">
+                </div>
+                <div class="header-profile-menu">
+                    <span>menu</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-dashboard">
+                <div class="dashboard-radar">
+                    <canvas id="dashboard-radar" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="vendor/jquery/js/jquery.js"></script>
+    <script src="vendor/jquery/js/jsrender.js"></script>
+    <script src="vendor/chartjs/Chart.min.js"></script>
+
+    <script type="text/javascript">
+        let ctx = document.getElementById('dashboard-radar');
+        let chartRadar = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
+                datasets: [{
+                    scaleOverride: true,
+                    scaleSteps: 5,
+                    scaleStepWidth: 5,
+                    scaleStartValue: 0,
+                    backgroundColor: "rgba(200,0,0,0.2)",
+                    data: [65, 75, 0, 0, 0, 0, 0, 0]
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scale: {
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

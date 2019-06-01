@@ -16,7 +16,5 @@
     "url": "https://github.com/alxnderq/hackatrix-frontend/issues"
   },
   "homepage": "https://github.com/alxnderq/hackatrix-frontend#readme",
-  "dependencies": {
-    "jquery": "^3.4.1"
-  }
+  "dependencies": {}
 }

@@ -20,6 +20,34 @@ body * > a {
   margin: 0 auto;
   height: 200px;
   text-align: center;
+  background-color: #fff;
+}
+
+.header-profile {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 15;
+    border-bottom: 1px solid #000;
+}
+
+.section {
+    position: relative;
+    top: 61px;
+}
+
+.section-dashboard .dashboard-radar,
+.section-dashboard .dashboard-radar > * {
+    margin: 0 auto;
+    display: block;
+}
+
+.header-profile .container .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
 }
 
 .container .header .logo-name {
