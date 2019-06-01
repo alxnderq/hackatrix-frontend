@@ -257,6 +257,31 @@ section.quiz-creator h2 {
     transform: translateY(-50%);
     cursor: pointer;
 }
+.send_btn:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 8px;
+    border-color: transparent transparent transparent white;
+    right: 10px;
+    top: 13px;
+}
+.send_btn {
+    position: absolute;
+    background: #1565c0;
+    font-size: 14px;
+    color: white;
+    padding: 9px 15px;
+    border-radius: 10px;
+    padding-right: 30px;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 67px;
+}
 .overflowcontent {
     display: flex;
 }
@@ -264,6 +289,7 @@ section.quiz-creator h2 {
     width: 100%;
     flex: none;
     position: relative;
+    transition: 0.5s;
 }
 .section-tool h2 {
     font-size: 14px !important;
@@ -299,5 +325,33 @@ section.quiz-creator h2 {
     display: flex;
     font-size: 12px;
     justify-content: space-around;
+    max-width: 900px;
+    margin: auto;
     margin-top: 10px;
+}
+.back-btn:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 8px;
+    border-color: transparent transparent transparent #1565c0;
+    left: 10px;
+    top: 13px;
+    transform: rotate(-180deg);
+}
+.back-btn {
+    position: absolute;
+    background: white;
+    font-size: 14px;
+    color: #1565c0;
+    padding: 9px 15px;
+    border-radius: 10px;
+    padding-left: 30px;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border: solid 1px #1565c0;
 }

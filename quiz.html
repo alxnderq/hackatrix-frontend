@@ -411,11 +411,12 @@
 				$('#quiz-user').append(template);
 				if (a == 0){
 					$('#question_'+resp[a].id).append(next_btn);
-				} else {					
+				} else {		
+				 	$('#question_'+resp[a].id).append(next_btn);			
 					$('#question_'+resp[a].id).append(back_btn);
 				}
 				if (a == resp.length-1){
-					$('#question_'+resp[a].id).append(next_btn);
+					$('#question_'+resp[a].id).append(back_btn);
 					$('#question_'+resp[a].id).append(send_btn);
 				}
 				$('#question_'+resp[a].id).attr('category',resp[a].category);
@@ -452,6 +453,24 @@
 					}
 				}
 				console.log(answers);
+			});
+			$('.next-btn').on('click',function(){
+				let $this = $(this);
+				let data = $this.closest('.section-tool').attr('data');
+				let realnum = parseInt(data) + 1;
+				let margin = 100*realnum;
+				let margin_left = 'margin-left : -'+margin+'%';
+				$('.section-tool').eq(0).attr('style',margin_left);
+				$('#numb').html(realnum+1);
+			});
+			$('.back-btn').on('click',function(){
+				let $this = $(this);
+				let data = $this.closest('.section-tool').attr('data');
+				let realnum = parseInt(data) - 1;
+				let margin = 100*realnum;
+				let margin_left = 'margin-left : -'+margin+'%';
+				$('.section-tool').eq(0).attr('style',margin_left);
+				$('#numb').html(realnum+1);
 			});
 	    },
 	    error: function(){
