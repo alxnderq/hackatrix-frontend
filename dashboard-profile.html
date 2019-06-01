@@ -15,9 +15,6 @@
     <header class="header-profile">
         <div class="container">
             <div class="header-content">
-                <div class="header-profile-back">
-                    <span>Back</span>
-                </div>
                 <div class="header-profile-logo">
                     <svg width="1485px" height="418px" viewBox="0 0 1485 418" version="1.1"
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -56,7 +53,8 @@
                     </svg>
                 </div>
                 <div class="header-profile-menu">
-                    <span>menu</span>
+                    <i class="material-icons">account_circle</i>
+                    <span id="name_user">Hans</span>
                 </div>
             </div>
         </div>
@@ -67,13 +65,11 @@
             <div class="container-dashboard">
                 <div class="section-dashboard">
                     <div class="dashboard-profile">
+                        <div class="icon-leeft">
+                            <i class="material-icons">account_circle</i>
+                        </div>
                         <p class="profile-name bold">Hans</p>
                         <p class="profile-level">5°</p>
-                    </div>
-                    <div class="dashboard-graphics">
-                        <div class="dashboard-radar">
-                            <canvas id="dashboard-radar" width="300" height="150"></canvas>
-                        </div>
                     </div>
                     <div class="dashboard-summary">
                         <p class="dashboard-summary-title bold">Resumen</p>
@@ -81,27 +77,37 @@
                             <canvas id="dashboard-bar" width="150" height="100"></canvas>
                         </div>
                     </div>
+                    <div class="section-shadow">
+                        <p class="section-categories-title bold">Simuladores evaluados por categoría</p>
+                        <!--
+                        <div class="dashboard-list">
+                            <ul>
+                                <li><span>Lingüistica</span></li>
+                                <li><span>Lógica</span></li>
+                                <li><span>Espacial</span></li>
+                                <li><span>Física</span></li>
+                                <li><span>Musical</span></li>
+                                <li><span>Interpersonal</span></li>
+                                <li><span>Intrapersonal</span></li>
+                                <li><span>Naturalista</span></li>
+                            </ul>
+                        </div>
+                        -->
+                        <p class="section-categories-teacher bold">Profesor: Alexander Quispe</p>
+                        <div class="section-sumulator-downloads">
+                            <a href="quiz.html" class="btn blue darken-2"><i
+                                    class="material-icons left">play_arrow</i>Iniciar Simulador</a>
+                            <a href="#" class="btn indigo darken-2"><i
+                                    class="material-icons left">file_download</i>Descargar Simulador</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="section-categories">
-                    <p class="section-categories-title bold">Simuladores evaluados por categoría</p>
-                    <div class="dashboard-list">
-                        <ul>
-                            <li><span>Lingüistica</span></li>
-                            <li><span>Lógica</span></li>
-                            <li><span>Espacial</span></li>
-                            <li><span>Física</span></li>
-                            <li><span>Musical</span></li>
-                            <li><span>Interpersonal</span></li>
-                            <li><span>Intrapersonal</span></li>
-                            <li><span>Naturalista</span></li>
-                        </ul>
-                    </div>
-                    <p class="section-categories-teacher bold">Profesor: Alexander Quispe</p>
-                    <div class="section-sumulator-downloads">
-                        <a href="quiz.html" class="btn blue darken-2"><i
-                                class="material-icons left">play_arrow</i>Iniciar Simulador</a>
-                        <a href="#" class="btn indigo darken-2"><i
-                                class="material-icons left">file_download</i>Descargar Simulador</a>
+                    <div class="dashboard-graphics">
+                        <p class="dashboard-summary-title bold">Estadística</p>
+                        <div class="dashboard-radar">
+                            <canvas id="dashboard-radar" width="300" height="150"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,56 +124,69 @@
     <script src="vendor/materialize/js/materialize.min.js"></script>
 
     <script type="text/javascript">
+        $(function () {
+            let user = JSON.parse(localStorage.getItem("user"));
 
-        let ctxRadar = $('#dashboard-radar');
-        let chartRadar = new Chart(ctxRadar, {
-            type: 'radar',
-            data: {
-                labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
-                datasets: [{
-                    backgroundColor: "rgba(172, 198, 220, 0.5)",
-                    data: [65, 75, 0, 0, 0, 0, 0, 0]
-                }]
-            },
-            options: {
-                legend: {
-                    display: false
+            $("#name_user").html(user.name);
+            $(".profile-name").html(user.name);
+            $(".profile-level").html(user.lastname);
+
+            $.ajax({
+                url: 'http://localhost:8080/thot/v1/results?idStudent=' + user.id,
+                type: 'get',
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data);
+                    let results = [];
+
+                    if (data.length > 0) {
+                        results.push(data[0].average);
+                    }
+                    chart(results);
+                }
+            });
+        });
+
+        function chart(values) {
+            let ctxRadar = $('#dashboard-radar');
+            let chartRadar = new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
+                    datasets: [{
+                        backgroundColor: "rgba(0, 200, 83, 0.5)",
+                        data: values
+                    }]
                 },
-                scale: {
-                    ticks: {
-                        beginAtZero: true
+                options: {
+                    legend: {
+                        display: false
+                    },
+                    scale: {
+                        ticks: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        let ctxBar = $('#dashboard-bar');
-        let chartBar = new Chart(ctxBar, {
-            type: 'horizontalBar',
-            data: {
-                labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
-                datasets: [{
-                    backgroundColor: "rgba(172, 198, 220, 1)",
-                    data: [65, 75, 0, 0, 0, 0, 0, 0]
-                }]
-            },
-            options: {
-                legend: {
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        barPercentage: 0.5,
-                        barThickness: 6,
-                        maxBarThickness: 8,
-                        minBarLength: 2,
-                        gridLines: {
-                            offsetGridLines: true
-                        }
+            let ctxBar = $('#dashboard-bar');
+            let chartBar = new Chart(ctxBar, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
+                    datasets: [{
+                        backgroundColor: "rgba(0, 200, 83, 0.5)",
+                        data: values
                     }]
+                },
+                options: {
+                    legend: {
+                        display: false
+                    }
                 }
-            }
-        });
+            });
+        }
     </script>
 
 </body>
