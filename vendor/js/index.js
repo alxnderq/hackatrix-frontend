@@ -1,3 +1,3 @@
 function login() {
-    $(location).attr('href', 'perfil.html');
+    $(location).attr('href', 'dashboard-profile.html');
 }

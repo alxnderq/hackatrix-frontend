@@ -378,3 +378,16 @@ section.quiz-creator h2 {
     cursor: pointer;
     border: solid 1px #1565c0;
 }
+.header-profile-menu i {
+    color: #1565c0;
+    display: inline-block;
+    vertical-align: middle;
+}
+.header-profile-menu span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: 700;
+    position: relative;
+    top: 1px;
+}
