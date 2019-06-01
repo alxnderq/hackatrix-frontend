@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {
     font-family: "Montserrat", sans-serif;
@@ -14,6 +15,14 @@ body * > a {
 .container {
     max-width: calc(100% - 300px);
     margin: auto;
+}
+
+.container-dashboard {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 70% 30%;
+    background-color: #fff;
+    color: #444;
 }
 
 .container .header {
@@ -119,19 +128,21 @@ body * > a {
     padding-right: 20px;
 }
 
-.inline-list,
-.inline-list li {
+.dashboard-list,
+.dashboard-list li {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.inline-list li {
-    display: inline-block;
+.dashboard-list li {
+    display: block;
 }
 
-.inline-list li span {
-    margin: 0 10px;
+.section-sumulator-downloads > .btn {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 @media screen and (max-width: 600px) {
@@ -144,6 +155,16 @@ body * > a {
         top: 50px;
         position: relative;
     }
+
+    .container-dashboard {
+        display: block;
+    }
+
+    .dashboard-list li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
     .form-group > * {
         display: block;
         width: 100%;
@@ -161,8 +182,10 @@ body * > a {
         display: block;
     }
 
-    .dashboard-lines > * {
-        display: inline-block;
+    .dashboard-list ul {
+        display: grid;
+        grid-template-columns: repeat(4, calc(25% - 20px));
+        grid-column-gap: 26px;
     }
 }
 

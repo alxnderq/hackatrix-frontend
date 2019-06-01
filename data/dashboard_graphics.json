@@ -1,0 +1,37 @@
+{
+    "code": 0,
+    "results": [
+        {
+            "category": "Lingüistica",
+            "points": 1
+        },
+        {
+            "category": "Lógica",
+            "points": 1
+        },
+        {
+            "category": "Espacial",
+            "points": 1
+        },
+        {
+            "category": "Física",
+            "points": 1
+        },
+        {
+            "category": "Musical",
+            "points": 1
+        },
+        {
+            "category": "Interpersonal",
+            "points": 1
+        },
+        {
+            "category": "Intrapersonal",
+            "points": 1
+        },
+        {
+            "category": "Naturalista",
+            "points": 1
+        },
+    ]
+}
