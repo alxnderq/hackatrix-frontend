@@ -1,0 +1,78 @@
+[
+	{
+		"category": "espacial",
+		"course": "historia_peru",
+		"data-question": [
+			{				
+				"items": [
+					{
+						"type":"text",
+						"data":"Cuantos departamentos departamentos tuvieron con poca presencia incaica"
+					},
+					{
+						"type":"mapa_peru",
+						"data":""
+					}
+					{
+						"type":"answers",
+						"data":"4"
+					}
+				],
+				"answers": [
+					{
+						"answer": "1"
+					},
+					{
+						"answer": "3"
+					},
+					{
+						"answer": "5"
+					},
+					{
+						"answer": "2"
+					},
+					{
+						"answer": "4"
+					}
+				],
+				"correct_answer": "0"
+			}
+		]
+	},
+	{
+		"category": "linguistica",
+		"course": "historia_peru",
+		"data-question": [
+			{				
+				"items": [
+					{
+						"type":"text",
+						"data":"Nombra el 9no Inca"
+					}
+					{
+						"type":"answers",
+						"data":"Pachacuteq"
+					}
+				],
+				"answers": [
+					{
+						"answer": "Pachacuteq"
+					},
+					{
+						"answer": "Manco Inca"
+					},
+					{
+						"answer": "Tupac Inca Yupanqui"
+					},
+					{
+						"answer": "Tupac Amarú"
+					},
+					{
+						"answer": "Manco Capac"
+					}
+				],
+				"correct_answer": "0"
+			}
+		]
+	}
+]

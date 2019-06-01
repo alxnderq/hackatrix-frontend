@@ -1,0 +1,15 @@
+[
+	{
+		"category": "espacial",
+		"tools": [
+			{
+				"type": "text",
+				"name": "Ingresar Texto"
+			},
+			{
+				"type": "mapa_peru",
+				"name": "Ingresar Mapa del Perú"
+			}		
+		]
+	}
+]
