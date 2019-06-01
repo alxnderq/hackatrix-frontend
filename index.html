@@ -102,7 +102,7 @@
                     contentType: 'application/json',
                     data: JSON.stringify(data),
                     success: function (data) {
-                        localStorage.setItem("user", data);
+                        localStorage.setItem("user", JSON.stringify(data));
                         window.location.href = "dashboard-profile.html";
                     }
                 });

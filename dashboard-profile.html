@@ -76,7 +76,7 @@
                         <div class="dashboard-bar">
                             <canvas id="dashboard-bar" width="150" height="100"></canvas>
                         </div>
-                    </div>     
+                    </div>
                     <div class="section-shadow">
                         <p class="section-categories-title bold">Simuladores evaluados por categoría</p>
                         <!--
@@ -100,7 +100,7 @@
                             <a href="#" class="btn indigo darken-2"><i
                                     class="material-icons left">file_download</i>Descargar Simulador</a>
                         </div>
-                    </div>               
+                    </div>
                 </div>
                 <div class="section-categories">
                     <div class="dashboard-graphics">
@@ -124,45 +124,69 @@
     <script src="vendor/materialize/js/materialize.min.js"></script>
 
     <script type="text/javascript">
+        $(function () {
+            let user = JSON.parse(localStorage.getItem("user"));
 
-        let ctxRadar = $('#dashboard-radar');
-        let chartRadar = new Chart(ctxRadar, {
-            type: 'radar',
-            data: {
-                labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
-                datasets: [{
-                    backgroundColor: "rgba(0, 200, 83, 1)",
-                    data: [65, 75, 0, 0, 0, 0, 0, 0]
-                }]
-            },
-            options: {
-                legend: {
-                    display: false
+            $("#name_user").html(user.name);
+            $(".profile-name").html(user.name);
+            $(".profile-level").html(user.lastname);
+
+            $.ajax({
+                url: 'http://localhost:8080/thot/v1/results?idStudent=' + user.id,
+                type: 'get',
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data);
+                    let results = [];
+
+                    if (data.length > 0) {
+                        results.push(data[0].average);
+                    }
+                    chart(results);
+                }
+            });
+        });
+
+        function chart(values) {
+            let ctxRadar = $('#dashboard-radar');
+            let chartRadar = new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
+                    datasets: [{
+                        backgroundColor: "rgba(0, 200, 83, 0.5)",
+                        data: values
+                    }]
                 },
-                scale: {
-                    ticks: {
-                        beginAtZero: true
+                options: {
+                    legend: {
+                        display: false
+                    },
+                    scale: {
+                        ticks: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        let ctxBar = $('#dashboard-bar');
-        let chartBar = new Chart(ctxBar, {
-            type: 'horizontalBar',
-            data: {
-                labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
-                datasets: [{
-                    backgroundColor: "rgba(0, 200, 83, 1)",
-                    data: [65, 75, 0, 0, 0, 0, 0, 0]
-                }]
-            },
-            options: {
-                legend: {
-                    display: false
+            let ctxBar = $('#dashboard-bar');
+            let chartBar = new Chart(ctxBar, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
+                    datasets: [{
+                        backgroundColor: "rgba(0, 200, 83, 0.5)",
+                        data: values
+                    }]
+                },
+                options: {
+                    legend: {
+                        display: false
+                    }
                 }
-            }
-        });
+            });
+        }
     </script>
 
 </body>

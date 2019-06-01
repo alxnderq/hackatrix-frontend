@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>quiz creator</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <title>quiz creator</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 </head>
+
 <body>
-	<header class="header-profile">
+    <header class="header-profile">
         <div class="container">
             <div class="header-content">
                 <div class="header-profile-logo">
@@ -52,28 +54,27 @@
             </div>
         </div>
     </header>
-	<section class="quiz-creator">
-		<h2>Cuestionario</h2>
-		<div class="quiz-container">
-			<div class="pagination_c">
-				
-			</div>		
-			<div id="quiz-user" class="overflowcontent">		
-			</div>
-		</div>
-	</section>	
+    <section class="quiz-creator">
+        <h2>Cuestionario</h2>
+        <div class="quiz-container">
+            <div class="pagination_c">
+
+            </div>
+            <div id="quiz-user" class="overflowcontent">
+            </div>
+        </div>
+    </section>
 </body>
 <script type="text/javascript">
-	//public services
+    //public services
 	/*
 		var link = 'server/servicio1',
 		var inteligencias = espacial;
 	*/
-	var tools = 'http://dev.grupo5.com/thot/alumno/data/question.json';
+    var tools = 'http://dev.grupo5.com/thot/alumno/data/question.json';
 </script>
 <script type="text/javascript" src="vendor/jquery/js/jquery.js"></script>
 <script type="text/javascript" src="vendor/jquery/js/jsrender.js"></script>
-<script type="text/javascript" src="assets/js/tools.js"></script>
 <!-- views -->
 <script id="tool_text" type="text/x-jsrender">
 	<div class="item_quiz" data-type="text">
@@ -406,95 +407,110 @@
 		</div>
 	</div>
 </script>
-<script id="tool_answers" type="text/x-jsrender">	
+<script id="tool_answers" type="text/x-jsrender">
 	<p><label><input type="radio" name="" data-id="{{:answerId}}" data="{{:answerDescription}}"><span>{{:answerDescription}}</span></label></p>
 </script>
 <!-- views end -->
 <script type="text/javascript">
-	$.ajax({
-	    url: tools,
-	    success: function (resp) {
+    let user = JSON.parse(localStorage.getItem("user"));
 
-			let pagination_t = '<span id="numb">1</span>/<span class="finalnumb">'+resp.length+'</span>';
-			$('.pagination_c').append(pagination_t);
-			for (let a=0;a<resp.length;a++){
-				let t = parseInt(a)+1;
-				let template = '<section class="section-tool" id="question_'+resp[a].id+'" data="'+a+'"><h2>Pregunta '+t+'</h2></section>';
-				let next_btn = '<div class="next-btn">Siguiente</div>';
-				let back_btn = '<div class="back-btn">Volver</div>';
-				let send_btn = '<div class="send_btn">Enviar</div>';
-				$('#quiz-user').append(template);
-				if (a == 0){
-					$('#question_'+resp[a].id).append(next_btn);
-				} else {		
-				 	$('#question_'+resp[a].id).append(next_btn);			
-					$('#question_'+resp[a].id).append(back_btn);
-				}
-				if (a == resp.length-1){
-					$('#question_'+resp[a].id).append(back_btn);
-					$('#question_'+resp[a].id).append(send_btn);
-				}
-				$('#question_'+resp[a].id).attr('category',resp[a].category);
-				for (let b=0;b<resp[a].items.length;b++){
-					let tmpl = $.templates("#tool_"+resp[a].items[b].type);
-					let html = tmpl.render(resp[a].items[b]);
-					if (resp[a].items[b].type != 'answers'){
-						$('#question_'+resp[a].id).append(html);
-					} 					
-				}
-				let answers_template = '<div class="item_quiz data_answers" data-type="answers"><div class="item_quiz_answers">	</div></div>';
-				$('#question_'+resp[a].id).append(answers_template);
-				for (let b=0;b<resp[a].answers.length;b++){
-					let tmpl = $.templates("#tool_answers");
-					let html = tmpl.render(resp[a].answers[b]);
-					$('#question_'+resp[a].id).find('.data_answers').append(html);
-					$('#question_'+resp[a].id).find('.data_answers').find('input').attr('name','option_'+resp[a].id);
-					$('#question_'+resp[a].id).find('.data_answers').find('input').attr('data-name',resp[a].id);
-				}			
-			}
-			//send
-			var answers=[];
-			let my_id = '0';
-			$('.send_btn').on('click',function(){
-				let $answrs = $('.data_answers');
-				for (let c=0;c<$answrs.length;c++){
-					for (let d=0;d<$answrs.eq(c).find('input').length;d++){
-						if ($answrs.eq(c).find('input').eq(d).is(':checked')){
-							let category_val = $answrs.eq(c).find('input').eq(d).closest('section').attr('category');
-							let id = $answrs.eq(c).find('input').eq(d).attr('data-id');
-							let data = $answrs.eq(c).find('input').eq(d).attr('data-name');
-							let answer_single = {category: category_val, idQestion: data, answerOption: id};
-							answers.push(answer_single);
-						}
-					}
-				}				
-				let answer_single = {idStudent: my_id, requestStudentList: answers};
-				console.log(answer_single);
-			});
-			$('.next-btn').on('click',function(){
-				let $this = $(this);
-				let data = $this.closest('.section-tool').attr('data');
-				let realnum = parseInt(data) + 1;
-				let margin = 100*realnum;
-				let margin_left = 'margin-left : -'+margin+'%';
-				$('.section-tool').eq(0).attr('style',margin_left);
-				$('#numb').html(realnum+1);
-			});
-			$('.back-btn').on('click',function(){
-				let $this = $(this);
-				let data = $this.closest('.section-tool').attr('data');
-				let realnum = parseInt(data) - 1;
-				let margin = 100*realnum;
-				let margin_left = 'margin-left : -'+margin+'%';
-				$('.section-tool').eq(0).attr('style',margin_left);
-				$('#numb').html(realnum+1);
-			});
-	    },
-	    error: function(){
-	    	console.log('Error');
-	    }
-	});
+    $("#name_user").html(user.name);
+
+    $.ajax({
+        url: "http://localhost:8080/thot/v1/getQuestions?studentCode=" + user.id + "&categoryCode=1",
+        success: function (resp) {
+
+            let pagination_t = '<span id="numb">1</span>/<span class="finalnumb">' + resp.length + '</span>';
+            $('.pagination_c').append(pagination_t);
+            for (let a = 0; a < resp.length; a++) {
+                let t = parseInt(a) + 1;
+                let template = '<section class="section-tool" id="question_' + resp[a].id + '" data="' + a + '"><h2>Pregunta ' + t + '</h2></section>';
+                let next_btn = '<div class="next-btn">Siguiente</div>';
+                let back_btn = '<div class="back-btn">Volver</div>';
+                let send_btn = '<div class="send_btn">Enviar</div>';
+                $('#quiz-user').append(template);
+                if (a == 0) {
+                    $('#question_' + resp[a].id).append(next_btn);
+                } else {
+                    $('#question_' + resp[a].id).append(next_btn);
+                    $('#question_' + resp[a].id).append(back_btn);
+                }
+                if (a == resp.length - 1) {
+                    $('#question_' + resp[a].id).append(back_btn);
+                    $('#question_' + resp[a].id).append(send_btn);
+                }
+                $('#question_' + resp[a].id).attr('category', resp[a].category);
+                for (let b = 0; b < resp[a].items.length; b++) {
+                    let tmpl = $.templates("#tool_" + resp[a].items[b].type);
+                    let html = tmpl.render(resp[a].items[b]);
+                    if (resp[a].items[b].type != 'answers') {
+                        $('#question_' + resp[a].id).append(html);
+                    }
+                }
+                let answers_template = '<div class="item_quiz data_answers" data-type="answers"><div class="item_quiz_answers">	</div></div>';
+                $('#question_' + resp[a].id).append(answers_template);
+                for (let b = 0; b < resp[a].options.length; b++) {
+                    let tmpl = $.templates("#tool_answers");
+                    let html = tmpl.render(resp[a].options[b]);
+                    $('#question_' + resp[a].id).find('.data_answers').append(html);
+                    $('#question_' + resp[a].id).find('.data_answers').find('input').attr('name', 'option_' + resp[a].id);
+                    $('#question_' + resp[a].id).find('.data_answers').find('input').attr('data-name', resp[a].id);
+                }
+            }
+            //send
+            var answers = [];
+            let my_id = user.id;
+            $('.send_btn').on('click', function () {
+                let $answrs = $('.data_answers');
+                for (let c = 0; c < $answrs.length; c++) {
+                    for (let d = 0; d < $answrs.eq(c).find('input').length; d++) {
+                        if ($answrs.eq(c).find('input').eq(d).is(':checked')) {
+                            let category_val = $answrs.eq(c).find('input').eq(d).closest('section').attr('category');
+                            let id = $answrs.eq(c).find('input').eq(d).attr('data-id');
+                            let data = $answrs.eq(c).find('input').eq(d).attr('data-name');
+                            let answer_single = { category: parseInt(category_val), idQuestion: parseInt(data), idAnswerOption: parseInt(id) };
+                            answers.push(answer_single);
+                        }
+                    }
+                }
+                let answer_single = { idStudent: my_id, requestStudentList: answers };
+                console.log(answer_single);
+
+                $.ajax({
+                    url: 'http://localhost:8080/thot/v1/validateAnswers',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify(answer_single),
+                    success: function (data) {
+                        window.location.href = "dashboard-profile.html";
+                    }
+                });
+
+            });
+            $('.next-btn').on('click', function () {
+                let $this = $(this);
+                let data = $this.closest('.section-tool').attr('data');
+                let realnum = parseInt(data) + 1;
+                let margin = 100 * realnum;
+                let margin_left = 'margin-left : -' + margin + '%';
+                $('.section-tool').eq(0).attr('style', margin_left);
+                $('#numb').html(realnum + 1);
+            });
+            $('.back-btn').on('click', function () {
+                let $this = $(this);
+                let data = $this.closest('.section-tool').attr('data');
+                let realnum = parseInt(data) - 1;
+                let margin = 100 * realnum;
+                let margin_left = 'margin-left : -' + margin + '%';
+                $('.section-tool').eq(0).attr('style', margin_left);
+                $('#numb').html(realnum + 1);
+            });
+        },
+        error: function () {
+            console.log('Error');
+        }
+    });
 
 </script>
-</html>
 
+</html>
