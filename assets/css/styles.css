@@ -1,26 +1,26 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
 body {
-  font-family: "Montserrat", sans-serif;
-  margin: 0;
-  padding: 0;
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body * > a {
-  cursor: pointer;
-  text-decoration: none;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .container {
-  max-width: calc(100% - 300px);
-  margin: auto;
+    max-width: calc(100% - 300px);
+    margin: auto;
 }
 
 .container .header {
-  margin: 0 auto;
-  height: 200px;
-  text-align: center;
-  background-color: #fff;
+    margin: 0 auto;
+    height: 200px;
+    text-align: center;
+    background-color: #fff;
 }
 
 .header-profile {
@@ -30,17 +30,12 @@ body * > a {
     width: 100%;
     z-index: 15;
     border-bottom: 1px solid #000;
+    background-color: #fff;
 }
 
 .section {
     position: relative;
     top: 61px;
-}
-
-.section-dashboard .dashboard-radar,
-.section-dashboard .dashboard-radar > * {
-    margin: 0 auto;
-    display: block;
 }
 
 .header-profile .container .header-content {
@@ -51,7 +46,7 @@ body * > a {
 }
 
 .container .header .logo-name {
-  font-weight: 700;
+    font-weight: 700;
 }
 .form-group {
     margin-bottom: 10px;
@@ -59,7 +54,7 @@ body * > a {
 }
 
 .form-group > * {
-  display: inline-block;
+    display: inline-block;
 }
 
 .form-group > .form-label {
@@ -76,11 +71,11 @@ body * > a {
 
 .form-group > .form-input,
 .form-group > .form-button {
-  border: solid 1px #000;
-  border-radius: 5px;
-  margin: 0;
-  padding: 0;
-  height: 50px;
+    border: solid 1px #000;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+    height: 50px;
 }
 .form-group > .form-input {
     border: solid 1px rgba(0, 0, 0, 0.32);
@@ -100,52 +95,78 @@ body * > a {
     background: #1565c0;
     border: solid 1px #1565c0;
     color: white;
-
 }
 
 .form-footer {
-  margin: 30px auto;
+    margin: 30px auto;
 }
 
 .form-footer > * {
-  text-align: center;
+    text-align: center;
 }
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer > p {
-  text-align: right;
-  padding-right: 20px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.inline-list,
+.inline-list li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.inline-list li {
+    display: inline-block;
+}
+
+.inline-list li span {
+    margin: 0 10px;
 }
 
 @media screen and (max-width: 600px) {
-  .container,
-  .section-login {
-    max-width: 90%;
-    margin: auto;
-  }
-  .container .header > .header-logo {
-    top: 50px;
-    position: relative;
-  }
-  .form-group > * {
-    display: block;
-    width: 100%;
-  }
-  .form-group > .form-label {
-    margin-bottom: 5px;
-  }
-  .form-group > .form-input {
-    display: block;
-    width: calc(100% - 13px);
-  }
+    .container,
+    .section-login {
+        max-width: 90%;
+        margin: auto;
+    }
+    .container .header > .header-logo {
+        top: 50px;
+        position: relative;
+    }
+    .form-group > * {
+        display: block;
+        width: 100%;
+    }
+    .form-group > .form-label {
+        margin-bottom: 5px;
+    }
+    .form-group > .form-input {
+        display: block;
+        width: calc(100% - 13px);
+    }
+
+    .section-dashboard > * {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .dashboard-lines > * {
+        display: inline-block;
+    }
 }
 
+.bold {
+    font-weight: bold;
+}
 
 .fullh {
     background: #f5f5f7;
@@ -171,7 +192,8 @@ body * > a {
 }
 .loginForm .section {
     border-radius: 10px;
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2),
+        0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.14);
     background-color: #ffffff;
     max-width: 375px;
     margin: auto;
