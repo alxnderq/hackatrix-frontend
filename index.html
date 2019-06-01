@@ -19,7 +19,7 @@
         </header>
         <section class="section">
             <div class="section-login">
-                <form action="">
+                <form method="post">
                     <div class="form-group">
                         <div class="form-label">Usuario</div>
                         <input type="text" name="usuario" id="usuario" class="form-input">
@@ -29,7 +29,7 @@
                         <input type="password" name="password" id="password" class="form-input">
                     </div>
                     <div class="form-group">
-                        <input type="button" value="Ingresar" class="form-button">
+                        <input type="button" value="Ingresar" class="form-button" type="submit" onclick="login()">
                     </div>
                 </form>
             </div>
@@ -46,6 +46,9 @@
             <p>Powered by Dracarys</p>
         </footer>
     </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/js/index.js"></script>
 
 </body>
 
