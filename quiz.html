@@ -5,9 +5,14 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 </head>
 <body>
-	<nav class="nav-g">
-		<div class="nav-content">
-			<div class="logo"><svg width="1485px" height="418px" viewBox="0 0 1485 418" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<header class="header-profile">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-profile-back">
+                    <span>Back</span>
+                </div>
+                <div class="header-profile-logo">
+                    <svg width="1485px" height="418px" viewBox="0 0 1485 418" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g id="Group-18">
                                 <g id="iso">
@@ -24,24 +29,21 @@
                                 </g>
                             </g>
                         </g>
-                    </svg></div>
-            <div class="menu-c">
-            	<div class="menu-sol">            		
-            		<span id="data-user-aula">5to A </span>
-            	</div>
-            	<div class="menu-user">
-            		<span id="data-user"></span>
-            	</div>
+                    </svg>
+                </div>
+                <div class="header-profile-menu">
+                    <span>menu</span>
+                </div>
             </div>
-		</div>
-	</nav>
+        </div>
+    </header>
 	<section class="quiz-creator">
 		<h2>Cuestionario</h2>
 		<div class="quiz-container">
-			<div id="quiz-user">
-				<div class="pagination_c">
-					
-				</div>				
+			<div class="pagination_c">
+				
+			</div>		
+			<div id="quiz-user" class="overflowcontent">		
 			</div>
 		</div>
 	</section>	
@@ -397,15 +399,16 @@
 	$.ajax({
 	    url: tools,
 	    success: function (resp) {
+
+			let pagination_t = '<span id="numb">1</span>/<span class="finalnumb">'+resp.length+'</span>';
+			$('.pagination_c').append(pagination_t);
 			for (let a=0;a<resp.length;a++){
 				let t = parseInt(a)+1;
-				let template = '<section class="section-tool" id="question_'+resp[a].id+'" data="'+a+'"><h2>Pregunta '+t+'</h2></section>';	
-				let pagination_t = '<span id="numb"></span>/<span class="finalnumb">'+resp.length-1+'</span>';
+				let template = '<section class="section-tool" id="question_'+resp[a].id+'" data="'+a+'"><h2>Pregunta '+t+'</h2></section>';
 				let next_btn = '<div class="next-btn">Siguiente</div>';
 				let back_btn = '<div class="back-btn">Volver</div>';
 				let send_btn = '<div class="send_btn">Enviar</div>';
 				$('#quiz-user').append(template);
-				$('.pagination_c').append(pagination_t);
 				if (a == 0){
 					$('#question_'+resp[a].id).append(next_btn);
 				} else {					

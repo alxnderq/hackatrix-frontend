@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="vendor/chartjs/Chart.min.css" rel="stylesheet">
+    <link href="vendor/materialize/css/materialize.min.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <title>Thot</title>
+</head>
+
+<body>
+    <header class="header-profile">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-profile-back">
+                    <span>Back</span>
+                </div>
+                <div class="header-profile-logo">
+                    <img src="assets/images/logo.png" alt="Logo">
+                </div>
+                <div class="header-profile-menu">
+                    <span>menu</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-dashboard">
+                <div class="dashboard-profile">
+                    <p class="profile-name bold">Hans</p>
+                    <p class="profile-level">5°</p>
+                </div>
+                <div class="dashboard-graphics">
+                    <div class="dashboard-radar">
+                        <canvas id="dashboard-radar" width="500" height="300"></canvas>
+                    </div>
+                </div>
+                <div class="dashboard-summary">
+                    <p class="dashboard-summary-title bold">Resumen</p>
+                    <div class="dashboard-bar">
+                        <canvas id="dashboard-bar" width="500" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="section-categories">
+                <p class="section-categories-title bold">Simuladores evaluados por categoría</p>
+                <div class="inline-list">
+                    <li><span>categoria 1</span></li>
+                    <li><span>categoria 2</span></li>
+                    <li><span>categoria 3</span></li>
+                    <li><span>categoria 4</span></li>
+                    <li><span>categoria 5</span></li>
+                    <li><span>categoria 6</span></li>
+                    <li><span>categoria 7</span></li>
+                    <li><span>categoria 8</span></li>
+                </div>
+                <p class="section-categories-teacher bold">Profesor: Alexander Quispe</p>
+                <div class="section-sumulator-downloads">
+                    <input type="button" value="Descargar Simulador">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="vendor/jquery/js/jquery.js"></script>
+    <script src="vendor/jquery/js/jsrender.js"></script>
+    <script src="vendor/chartjs/Chart.min.js"></script>
+    <script src="vendor/materialize/js/materialize.min.js"></script>
+
+    <script type="text/javascript">
+        let ctxRadar = $('#dashboard-radar');
+        let chartRadar = new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
+                datasets: [{
+                    data: [65, 75, 0, 0, 0, 0, 0, 0]
+                }]
+            },
+            options: {
+                responsive: false,
+                legend: {
+                    display: false
+                },
+                scale: {
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        let ctxBar = $('#dashboard-bar');
+        let chartBar = new Chart(ctxBar, {
+            type: 'horizontalBar',
+            data: {
+                labels: ['Lingüistica', 'Lógica', 'Espacial', 'Física', 'Musical', 'Interpersonal', 'Intrapersonal', 'Naturalista'],
+                datasets: [{
+                    backgroundColor: "rgba(172, 198, 220, 1)",
+                    data: [65, 75, 0, 0, 0, 0, 0, 0]
+                }]
+            },
+            options: {
+                responsive: false,
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        barPercentage: 0.5,
+                        barThickness: 6,
+                        maxBarThickness: 8,
+                        minBarLength: 2,
+                        gridLines: {
+                            offsetGridLines: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
