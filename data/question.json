@@ -1,0 +1,118 @@
+[
+	{		
+		"id":"8",
+		"category": "espacial",	
+		"items": [
+			{
+				"type":"text",
+				"data":"Cuantos departamentos departamentos tuvieron con poca presencia incaica"
+			},
+			{
+				"type":"mapa_peru",
+				"data":""
+			},
+			{
+				"type":"answers",
+				"data":"4"
+			}
+		],
+		"answers": [
+			{
+				"answerId":"0",
+				"answerDescription": "asdasdasdasd"
+			},
+			{
+				"answerId":"1",
+				"answerDescription": "1222"
+			},
+			{
+				"answerId":"2",
+				"answerDescription": "123123"
+			},
+			{
+				"answerId":"3",
+				"answerDescription": "122"
+			},
+			{
+				"answerId":"4",
+				"answerDescription": "11222"
+			}
+		]
+	},
+	{		
+		"id":"10",
+		"category": "espacial",	
+		"items": [
+			{
+				"type":"text",
+				"data":"Test"
+			},
+			{
+				"type":"mapa_peru",
+				"data":""
+			},
+			{
+				"type":"answers",
+				"data":"2"
+			}
+		],
+		"answers": [
+			{
+				"answerId":"0",
+				"answerDescription": "asdasdasdasd"
+			},
+			{
+				"answerId":"1",
+				"answerDescription": "1222"
+			},
+			{
+				"answerId":"2",
+				"answerDescription": "123123"
+			},
+			{
+				"answerId":"3",
+				"answerDescription": "122"
+			},
+			{
+				"answerId":"4",
+				"answerDescription": "11222"
+			}
+		]
+	},
+	{		
+		"id":"7",
+		"category": "linguistica",		
+		"items": [
+			{
+				"type":"text",
+				"data":"Test asdasd"
+			},
+			{
+				"type":"answers",
+				"data":"2"
+			}
+		],
+		"answers": [
+			{
+				"answerId":"0",
+				"answerDescription": "asdasdasdasd"
+			},
+			{
+				"answerId":"1",
+				"answerDescription": "1222"
+			},
+			{
+				"answerId":"2",
+				"answerDescription": "123123"
+			},
+			{
+				"answerId":"3",
+				"answerDescription": "122"
+			},
+			{
+				"answerId":"4",
+				"answerDescription": "11222"
+			}
+		]
+	}
+]
